@@ -53,6 +53,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import api from "../services/api";
+import Swal from "sweetalert2";
 
 const fullName = ref("");
 const email = ref("");
@@ -60,25 +61,63 @@ const password = ref("");
 const confirmPassword = ref("");
 const message = ref("");
 
-// const handleRegister = () => {
-//   if(password.value !== confirmPassword.value){
-//     alert("Password dan konfirmasi tidak sama!");
-//     return;
-//   }
-//   alert(`Register berhasil untuk: ${name.value} (${email.value})`);
-//   name.value = email.value = password.value = confirmPassword.value = "";
-// };
 const handleRegister = async () => {
+  if (password.value !== confirmPassword.value) {
+    Swal.fire({
+      title: "Registrasi gagal!",
+      text: "Password dan konfirmasi tidak sama!",
+      icon: "error",
+      theme: "dark",
+      confirmButtonColor: "#ffd366",
+    });
+    return;
+  }
+  const result = await Swal.fire({
+    title: "Apakah data sudah benar?",
+    showCancelButton: true,
+    confirmButtonText: "Ya!",
+    confirmButtonColor: "#ffd366",
+    cancelButtonText: "Batal",
+    cancelButtonColor: "#1c1c1c",
+    theme: "dark",
+  });
+
+  if (!result.isConfirmed) {
+    Swal.fire({
+      title: "Data dibatalkan!",
+      icon: "info",
+      theme: "dark",
+      confirmButtonColor: "#ffd366",
+    });
+    return;
+  }
+
   try {
     const res = await api.post("/register", {
       fullName: fullName.value,
       email: email.value,
       password: password.value,
     });
+
     message.value = res.data.message;
-    alert("ada");
+
+    Swal.fire({
+      title: "Terdaftar!",
+      text: "Akun telah dibuat! Silahkan lakukan login!",
+      icon: "success",
+      theme: "dark",
+      confirmButtonColor: "#ffd366",
+    });
   } catch (error: any) {
-    message.value = error.response?.data?.message || "Register failed";
+    message.value = error.response?.data?.message || "Registrasi gagal!";
+
+    Swal.fire({
+      title: "Error!",
+      text: message.value,
+      icon: "error",
+      theme: "dark",
+      confirmButtonColor: "#ffd366",
+    });
   }
 };
 </script>
