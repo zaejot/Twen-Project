@@ -26,15 +26,51 @@ import { isLoggedIn, logout } from "../services/auth";
 
 const router = useRouter();
 const logged = ref(false);
-onMounted(()=>{logged.value = isLoggedIn()});
-function doLogout(){ logout(); logged.value=false; router.push("/"); }
+onMounted(() => {
+  logged.value = isLoggedIn();
+});
+function doLogout() {
+  logout();
+  logged.value = false;
+  router.push("/");
+}
 </script>
 
 <style scoped>
-.nav { width:100%; background:#111; color:#fff; }
-.nav-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:14px 20px; }
-.brand { color: var(--accent); font-weight:900; font-size:20px; }
-.links { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
-.links a { color:#fff; text-decoration:none; }
-.btn-ghost { background:transparent; border:1px solid rgba(255,255,255,0.12); padding:6px 12px; border-radius:8px; color:#fff; cursor:pointer; }
+.nav {
+  width: 100%;
+  background: #111;
+  color: #fff;
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+}
+.brand {
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 20px;
+}
+.links {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.links a {
+  color: #fff;
+  text-decoration: none;
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
 </style>
