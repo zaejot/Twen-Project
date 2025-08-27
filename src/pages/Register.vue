@@ -54,7 +54,9 @@
 import { ref } from "vue";
 import api from "../services/api";
 import Swal from "sweetalert2";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 const fullName = ref("");
 const email = ref("");
 const password = ref("");
@@ -99,7 +101,13 @@ const handleRegister = async () => {
       password: password.value,
     });
 
+    fullName.value =''
+    email.value=''
+    password.value=''
+    confirmPassword.value=''
     message.value = res.data.message;
+
+    router.push("/login")
 
     Swal.fire({
       title: "Terdaftar!",
@@ -121,6 +129,7 @@ const handleRegister = async () => {
   }
 };
 </script>
+
 
 <style scoped>
 .auth-container {
