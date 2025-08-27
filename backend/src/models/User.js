@@ -11,4 +11,4 @@ const registerSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Register", registerSchema);
+module.exports = mongoose.model("User", registerSchema);

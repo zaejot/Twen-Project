@@ -133,11 +133,16 @@ const handleRegister = async () => {
 .auth-box {
   background: #1c1c1c;
   color: white;
-  padding: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 380px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 .title {
   text-align: center;
