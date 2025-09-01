@@ -34,6 +34,8 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import api from "../services/api";
+import Swal from "sweetalert2";
 
 const email = ref("");
 const password = ref("");
@@ -46,14 +48,27 @@ const handleLogin = async () => {
       email: email.value,
       password: password.value,
     });
+
+    Swal.fire({
+      title: "Login Berhasil!",
+      text: "Selamat datang kembali!",
+      icon: "success",
+      theme: "dark",
+      confirmButtonColor: "#ffd366",
+    });
+
     localStorage.setItem("token", res.data.token);
     router.push("/dashboard");
   } catch (error) {
     message.value = error.response?.data?.message || "Login gagal!";
-    alert(message);
+    Swal.fire({
+      title: "Login Gagal!",
+      text: "Email atau password salah!",
+      icon: "error",
+      theme: "dark",
+      confirmButtonColor: "#ffd366",
+    });
   }
-  // alert(`Login dengan email: ${email.value}`);
-  // email.value = password.value = "";
 };
 </script>
 
