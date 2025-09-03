@@ -36,11 +36,13 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import api from "../services/api";
 import Swal from "sweetalert2";
+import { useAuthStore } from "../services/auth";
 
 const email = ref("");
 const password = ref("");
 const router = useRouter();
 const message = ref("");
+const auth = useAuthStore();
 
 const handleLogin = async () => {
   try {
@@ -55,10 +57,17 @@ const handleLogin = async () => {
       icon: "success",
       theme: "dark",
       confirmButtonColor: "#ffd366",
+      customClass: {
+        confirmButton: "confirm-btn",
+      },
     });
 
     localStorage.setItem("token", res.data.token);
-    router.push("/dashboard");
+    // router.push("/dashboard");
+    if (res.data.token) {
+      auth.login(res.data.token);
+      router.push("/dashboard");
+    }
   } catch (error) {
     message.value = error.response?.data?.message || "Login gagal!";
     Swal.fire({
@@ -135,5 +144,9 @@ input {
 .switch a {
   color: #ffd366;
   text-decoration: underline;
+}
+
+.confirm-btn {
+  color: #000;
 }
 </style>
