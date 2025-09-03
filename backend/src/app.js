@@ -5,6 +5,7 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") });
 const express = require("express");
 const connectDB = require("./config/db");
 const registerRoute = require("./routes/userRoute");
+const productRoute = require("./routes/productRoute");
 const cors = require("cors");
 
 connectDB();
@@ -24,5 +25,6 @@ app.use(express.json());
 
 // Routes
 app.use("/api", registerRoute);
+app.use("/api", productRoute);
 
 module.exports = app;
