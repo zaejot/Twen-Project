@@ -6,10 +6,12 @@
         <router-link to="/">Beranda</router-link>
         <router-link to="/about">Tentang</router-link>
         <router-link to="/contact">Kontak</router-link>
-        <template v-if="!logged">
+
+        <template v-if="!auth.isLoggedIn">
           <router-link to="/login">Masuk</router-link>
           <router-link to="/register">Daftar</router-link>
         </template>
+
         <template v-else>
           <router-link to="/dashboard">Dashboard</router-link>
           <button class="btn-ghost" @click="doLogout">Keluar</button>
@@ -22,17 +24,45 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { isLoggedIn, logout } from "../services/auth";
+import { isLoggedIn, useAuthStore } from "../services/auth";
+import Swal from "sweetalert2";
 
 const router = useRouter();
 const logged = ref(false);
+const auth = useAuthStore();
+
 onMounted(() => {
   logged.value = isLoggedIn();
 });
+
 function doLogout() {
-  logout();
-  logged.value = false;
-  router.push("/");
+  Swal.fire({
+    title: "Apakah anda ingin keluar?",
+    showCancelButton: true,
+    confirmButtonText: "Ya!",
+    confirmButtonColor: "#ffd366",
+    cancelButtonText: "Batal",
+    cancelButtonColor: "#1c1c1c",
+    theme: "dark",
+    // customClass: {
+    //   confirmButton: "confirm-btn",
+    // },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Logout berhasil!",
+        text: "Sampai jumlpa nanti!",
+        icon: "success",
+        theme: "dark",
+        confirmButtonColor: "#ffd366",
+        // customClass: {
+        //   confirmButton: "confirm-btn",
+        // },
+      });
+      auth.logout();
+      router.push("/");
+    }
+  });
 }
 </script>
 
@@ -66,11 +96,22 @@ function doLogout() {
   text-decoration: none;
 }
 .btn-ghost {
-  background: transparent;
+  background: #ffd366;
   border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 6px 12px;
   border-radius: 8px;
-  color: #fff;
+  color: #000;
   cursor: pointer;
+}
+
+.btn-ghost:hover {
+  background-color: #ffb900;
+  transition: all;
+  transition-duration: 500ms;
+}
+
+.confirm-btn {
+  color: #000;
+  /* background-color: #fff; */
 }
 </style>
