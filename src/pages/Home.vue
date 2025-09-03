@@ -25,15 +25,7 @@
 
 <script setup lang="ts">
 import axios from "axios";
-import type { NumericLiteral } from "typescript";
 import { onMounted, ref } from "vue";
-// import api from "../services/api";
-const featured = ref([
-  { id: 1, name: "Hoodie Black", price: 250000 },
-  { id: 2, name: "T-shirt White", price: 120000 },
-  { id: 3, name: "Cap", price: 80000 },
-  { id: 4, name: "Sweatshirt Grey", price: 200000 },
-]);
 
 interface Product {
   _id: string;
