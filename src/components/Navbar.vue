@@ -3,7 +3,6 @@
     <div class="container nav-inner">
       
       <nav class="links">
-<<<<<<< HEAD
         <!-- Jika belum login -->
         <template v-if="!auth.isLoggedIn">
           <a class="brand" href="/">TwenTears</a>
@@ -11,40 +10,10 @@
           <router-link to="/contact">Kontak</router-link>
           <router-link to="/login">Masuk</router-link>
           <router-link to="/register">Daftar</router-link>
-=======
-        <router-link
-          to="/"
-          class="hover:text-lg hover:transition-all hover:duration-500"
-          >Beranda</router-link
-        >
-        <router-link
-          to="/about"
-          class="hover:text-lg hover:transition-all hover:duration-500"
-          >Tentang</router-link
-        >
-        <router-link
-          to="/contact"
-          class="hover:text-lg hover:transition-all hover:duration-500"
-          >Kontak</router-link
-        >
-
-        <template v-if="!auth.isLoggedIn">
-          <router-link
-            to="/login"
-            class="hover:text-lg hover:transition-all hover:duration-500"
-            >Masuk</router-link
-          >
-          <router-link
-            to="/register"
-            class="hover:text-lg hover:transition-all hover:duration-500"
-            >Daftar</router-link
-          >
->>>>>>> d807fa0466049ad455979e79f2285f5712267931
         </template>
 
         <!-- Jika sudah login -->
         <template v-else>
-<<<<<<< HEAD
           <a class="brand" href="/dashboard">TwenTears</a>
           <router-link to="/shop"></router-link>
           <router-link to="/shop">Belanja</router-link>
@@ -55,14 +24,6 @@
               <button class="btn-ghost" @click="doLogout">Keluar</button>
             </div>
           </div>
-=======
-          <router-link
-            to="/dashboard"
-            class="hover:text-lg hover:transition-all hover:duration-500"
-            >Dashboard</router-link
-          >
-          <button class="btn-ghost" @click="doLogout">Keluar</button>
->>>>>>> d807fa0466049ad455979e79f2285f5712267931
         </template>
       </nav>
     </div>
