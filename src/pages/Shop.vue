@@ -9,8 +9,12 @@
             <img src="" :alt="product.name" />
           </div>
           <h3>{{ product.name }}</h3>
-          <p class="price">Rp {{ product.price.toLocaleString() }}</p>
-          <button class="btn" @click="addToCart(product)">Beli Sekarang</button>
+          <div>
+            <p class="price">Rp {{ product.price.toLocaleString() }}</p>
+            <button class="btn" @click="addToCart(product)">
+              Beli Sekarang
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -93,17 +97,21 @@ onMounted(fetchData);
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 0.75rem;
   border-radius: 10px;
   background: rgba(30, 30, 30, 0.85);
   text-align: center;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s;
+  height: 100%;
 }
 .card:hover {
   transform: translateY(-3px);
