@@ -3,10 +3,9 @@
     <div class="container">
       <h1>Dashboard</h1>
       <p>
-        Welcome, <strong>{{ user?.name }}</strong>
+        Welcome INI BELOM YAA WOK, <strong>{{  }}</strong>
       </p>
-      <p>Email: {{ user?.email }}</p>
-      <button class="btn" @click="doLogout">Logout</button>
+      
     </div>
   </section>
 </template>

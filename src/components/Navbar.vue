@@ -1,44 +1,30 @@
 <template>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="/">TwenTears</a>
+      
       <nav class="links">
-        <router-link
-          to="/"
-          class="hover:text-lg hover:transition-all hover:duration-500"
-          >Beranda</router-link
-        >
-        <router-link
-          to="/about"
-          class="hover:text-lg hover:transition-all hover:duration-500"
-          >Tentang</router-link
-        >
-        <router-link
-          to="/contact"
-          class="hover:text-lg hover:transition-all hover:duration-500"
-          >Kontak</router-link
-        >
 
+        <!-- Jika belum login -->
         <template v-if="!auth.isLoggedIn">
-          <router-link
-            to="/login"
-            class="hover:text-lg hover:transition-all hover:duration-500"
-            >Masuk</router-link
-          >
-          <router-link
-            to="/register"
-            class="hover:text-lg hover:transition-all hover:duration-500"
-            >Daftar</router-link
-          >
+          <a class="brand" href="/">TwenTears</a>
+          <router-link to="/about">Tentang</router-link>
+          <router-link to="/contact">Kontak</router-link>
+          <router-link to="/login">Masuk</router-link>
+          <router-link to="/register">Daftar</router-link>
         </template>
 
+        <!-- Jika sudah login -->
         <template v-else>
-          <router-link
-            to="/dashboard"
-            class="hover:text-lg hover:transition-all hover:duration-500"
-            >Dashboard</router-link
-          >
-          <button class="btn-ghost" @click="doLogout">Keluar</button>
+          <a class="brand" href="/dashboard">TwenTears</a>
+          <router-link to="/shop"></router-link>
+          <router-link to="/shop">Belanja</router-link>
+          <div class="dropdown" @mouseenter="open = true" @mouseleave="open = false">
+            <button class="btn-profile">Profile ▾</button>
+            <div v-if="open" class="dropdown-menu">
+              <router-link to="/cart" class="btn-ghost">Keranjang</router-link>
+              <button class="btn-ghost" @click="doLogout">Keluar</button>
+            </div>
+          </div>
         </template>
       </nav>
     </div>
@@ -54,6 +40,7 @@ import Swal from "sweetalert2";
 const router = useRouter();
 const logged = ref(false);
 const auth = useAuthStore();
+const open = ref(false);
 
 onMounted(() => {
   logged.value = isLoggedIn();
@@ -68,20 +55,14 @@ function doLogout() {
     cancelButtonText: "Batal",
     cancelButtonColor: "#1c1c1c",
     theme: "dark",
-    // customClass: {
-    //   confirmButton: "confirm-btn",
-    // },
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
         title: "Logout berhasil!",
-        text: "Sampai jumlpa nanti!",
+        text: "Sampai jumpa nanti!",
         icon: "success",
         theme: "dark",
         confirmButtonColor: "#ffd366",
-        // customClass: {
-        //   confirmButton: "confirm-btn",
-        // },
       });
       auth.logout();
       router.push("/");
@@ -127,15 +108,44 @@ function doLogout() {
   color: #000;
   cursor: pointer;
 }
-
 .btn-ghost:hover {
   background-color: #ffb900;
-  transition: all;
-  transition-duration: 500ms;
+  transition: all 0.3s ease;
 }
-
-.confirm-btn {
-  color: #000;
-  /* background-color: #fff; */
+.btn-profile {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #222;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 150px;
+  z-index: 1000;
+}
+.dropdown-menu a,
+.dropdown-menu button {
+  color: #fff;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  color: #ffd366;
 }
 </style>
