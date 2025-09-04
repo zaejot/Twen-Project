@@ -9,4 +9,24 @@ const getProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProduct };
+const addProduct = async (req, res) => {
+  try {
+    const { name, price, desc, stock } = req.body;
+
+    if (!name || !price || !desc || !stock) {
+      return res.status(400).json({ message: "Semua field harus diisi" });
+    }
+
+    const product = await Product.create({
+      name,
+      price,
+      desc,
+      stock,
+    });
+
+    res.status(201).json({ message: "Item berhasil ditambahkan!" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+module.exports = { getProduct, addProduct };
