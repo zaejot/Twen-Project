@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg: #000000;
   /* full black */
@@ -28,7 +32,8 @@ body,
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
@@ -55,7 +60,9 @@ body {
 
 /* Card */
 .card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.01));
   border: 1px solid var(--edge);
   border-radius: 14px;
   padding: 16px;
@@ -145,7 +152,7 @@ a:hover {
   background: transparent;
   border: none;
   color: var(--fg);
-  font-size: 20px
+  font-size: 20px;
 }
 
 /* Footer */
@@ -204,19 +211,19 @@ textarea:focus {
 }
 
 /* Small screens */
-@media (max-width:700px) {
+@media (max-width: 700px) {
   .hamburger {
-    display: block
+    display: block;
   }
 
   .links {
-    display: none
+    display: none;
   }
 
   .links.open {
     display: flex;
     flex-direction: column;
-    gap: 10px
+    gap: 10px;
   }
 
   .container {
