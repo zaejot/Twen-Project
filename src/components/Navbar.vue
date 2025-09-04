@@ -3,17 +3,41 @@
     <div class="container nav-inner">
       <a class="brand" href="/">TwenTears</a>
       <nav class="links">
-        <router-link to="/">Beranda</router-link>
-        <router-link to="/about">Tentang</router-link>
-        <router-link to="/contact">Kontak</router-link>
+        <router-link
+          to="/"
+          class="hover:text-lg hover:transition-all hover:duration-500"
+          >Beranda</router-link
+        >
+        <router-link
+          to="/about"
+          class="hover:text-lg hover:transition-all hover:duration-500"
+          >Tentang</router-link
+        >
+        <router-link
+          to="/contact"
+          class="hover:text-lg hover:transition-all hover:duration-500"
+          >Kontak</router-link
+        >
 
         <template v-if="!auth.isLoggedIn">
-          <router-link to="/login">Masuk</router-link>
-          <router-link to="/register">Daftar</router-link>
+          <router-link
+            to="/login"
+            class="hover:text-lg hover:transition-all hover:duration-500"
+            >Masuk</router-link
+          >
+          <router-link
+            to="/register"
+            class="hover:text-lg hover:transition-all hover:duration-500"
+            >Daftar</router-link
+          >
         </template>
 
         <template v-else>
-          <router-link to="/dashboard">Dashboard</router-link>
+          <router-link
+            to="/dashboard"
+            class="hover:text-lg hover:transition-all hover:duration-500"
+            >Dashboard</router-link
+          >
           <button class="btn-ghost" @click="doLogout">Keluar</button>
         </template>
       </nav>
