@@ -9,6 +9,7 @@ import Register from '../pages/Register.vue'
 import Dashboard from '../pages/Dashboard.vue'
 import Cart from '../pages/Cart.vue'
 import Checkout from '../pages/Checkout.vue'
+import DasHboard from '../pages/admin/DasHboard.vue'
 
 const routes = [
     { path: '/', component: Home },
@@ -20,7 +21,8 @@ const routes = [
     { path: '/checkout', component: Checkout },
     { path: '/login', component: Login },
     { path: '/register', component: Register },
-    { path: '/dashboard', component: Dashboard }
+    { path: '/dashboard', component: Dashboard },
+    {path: "/admin", component: DasHboard}
 ]
 
 const router = createRouter({
