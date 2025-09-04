@@ -3,6 +3,7 @@
     <div class="container nav-inner">
       
       <nav class="links">
+
         <!-- Jika belum login -->
         <template v-if="!auth.isLoggedIn">
           <a class="brand" href="/">TwenTears</a>
