@@ -1,27 +1,65 @@
 <template>
   <header class="nav">
     <div class="container nav-inner">
-      
       <nav class="links">
         <!-- Jika belum login -->
         <template v-if="!auth.isLoggedIn">
-          <a class="brand" href="/">TwenTears</a>
-          <router-link to="/about">Tentang</router-link>
-          <router-link to="/contact">Kontak</router-link>
-          <router-link to="/login">Masuk</router-link>
-          <router-link to="/register">Daftar</router-link>
+          <!-- <div class="flex flex-col"> -->
+          <div class="w-full flex">
+            <a class="brand" href="/">TwenTears</a>
+            <div class="w-full flex justify-end gap-4">
+              <router-link
+                to="/about"
+                class="hover:scale-105 transition-all duration-200"
+                >Tentang</router-link
+              >
+              <router-link
+                to="/contact"
+                class="hover:scale-105 transition-all duration-200"
+                >Kontak</router-link
+              >
+              <router-link
+                to="/login"
+                class="hover:scale-105 transition-all duration-200"
+                >Masuk</router-link
+              >
+              <router-link
+                to="/register"
+                class="hover:scale-105 transition-all duration-200"
+                >Daftar</router-link
+              >
+            </div>
+          </div>
+          <!-- </div> -->
         </template>
 
         <!-- Jika sudah login -->
         <template v-else>
-          <a class="brand" href="/dashboard">TwenTears</a>
-          <router-link to="/shop"></router-link>
-          <router-link to="/shop">Belanja</router-link>
-          <div class="dropdown" @mouseenter="open = true" @mouseleave="open = false">
-            <button class="btn-profile">Profile ▾</button>
-            <div v-if="open" class="dropdown-menu">
-              <router-link to="/cart" class="btn-ghost">Keranjang</router-link>
-              <button class="btn-ghost" @click="doLogout">Keluar</button>
+          <div class="w-full flex">
+            <a class="brand" href="/dashboard">TwenTears</a>
+            <div class="w-full flex justify-end gap-4">
+              <router-link
+                to="/shop"
+                class="hover:scale-105 transition-all duration-200"
+              ></router-link>
+              <router-link
+                to="/shop"
+                class="hover:scale-105 transition-all duration-200"
+                >Belanja</router-link
+              >
+              <div
+                class="dropdown"
+                @mouseenter="open = true"
+                @mouseleave="open = false"
+              >
+                <button class="btn-profile">Profile ▾</button>
+                <div v-if="open" class="dropdown-menu">
+                  <router-link to="/cart" class="btn-ghost"
+                    >Keranjang</router-link
+                  >
+                  <button class="btn-ghost" @click="doLogout">Keluar</button>
+                </div>
+              </div>
             </div>
           </div>
         </template>
@@ -94,6 +132,7 @@ function doLogout() {
   gap: 14px;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 .links a {
   color: #fff;
@@ -109,6 +148,7 @@ function doLogout() {
 }
 .btn-ghost:hover {
   background-color: #ffb900;
+  color: #000;
   transition: all 0.3s ease;
 }
 .btn-profile {
